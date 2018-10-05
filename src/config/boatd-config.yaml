@@ -1,0 +1,38 @@
+boatd:
+    port: 2222
+    interface: 0.0.0.0
+
+plugin_directory: /opt/boatd/plugins
+
+plugins:
+    - logger:
+        enabled: false
+        period: 10
+        filename: logs/log_trace
+
+    - mavlink:
+        enabled: false
+        device: /dev/ttyUSB0
+        baud: 115200
+
+    - gpx_logger:
+        enabled: false
+        period: 1
+        filename: logs/gpx_log
+
+    - example_logger:
+        enabled: true
+
+driver:
+    file: /opt/boatd/drivers/driver.py
+
+behaviours:
+    - example:
+        file: /opt/boatd/behaviours/behaviour.py
+
+wind_filtering:
+    enabled: true
+    rate_of_change: 75
+
+waypoint_file: null
+home_position: [52.417318, -4.087246]
