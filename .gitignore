@@ -1,0 +1,8 @@
+__pycache__
+*.pyc
+*.o
+*.h
+
+*.iml
+.idea
+.code

@@ -1,0 +1,27 @@
+version: '3.2'
+services:
+  boatd:
+    image: quay.io/sails/boatd:latest
+    volumes:
+    - type: bind
+      source: ./src
+      target: /opt/boatd
+    ports: 
+    - 2222:2222
+  sailsd:
+    image: quay.io/sails/sailsd:latest
+    ports: 
+    - 3333:3333
+    depends_on:
+    - boatd
+  ui:
+    image: quay.io/sails/sails-ui-web:latest
+    environment:
+      SAILSD_HOST: sailsd
+      SAILSD_PORT: 3333
+    links:
+      - sailsd
+    ports: 
+    - 8080:8080
+    depends_on:
+    - sailsd
